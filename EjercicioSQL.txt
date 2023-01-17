@@ -1,0 +1,26 @@
+Ejercicio SQL
+Escribir una consulta SQL que traiga todos los clientes que han comprado en total más de 100,000$ en los últimos 12 meses usando las siguientes tablas: 
+
+Clientes: ID, Nombre, Apellido
+Ventas: Fecha, Sucursal, Numero_factura, Importe, Id_cliente
+
+
+1)
+SELECT c.nombre 
+FROM clientes c INNER JOIN ventas v on (v.id_cliente=c.id)
+WHERE v.fecha BETWEEN "2022-01-01" AND "2022-12-31" 
+GROUP BY c.id
+HAVING SUM(v.importe) > 100000
+
+ANSI SQL SYNTAX
+
+
+2)
+SELECT c.nombre
+FROM clientes c INNER JOIN ventas v on (v.id_cliente=c.id)
+WHERE v.fecha > now() - INTERVAL 12 month
+GROUP BY c.id
+HAVING SUM(v.importe) > 100000
+
+mySQL SYNTAX
+
